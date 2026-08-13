@@ -32,7 +32,7 @@ else:
     SECRET_KEY = os.getenv("DJANGO_SECURITY_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get("DJANGO_SECURITY_KEY"):
+if os.getenv("django_local"):   # In local
     DEBUG = True
 else:
     DEBUG = False
@@ -43,7 +43,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'cloudinary_storage',
+    #'cloudinary_storage',      # Conflicts with whitenoise, when doing collectstatic
     'cloudinary',
 
     'django.contrib.admin',
