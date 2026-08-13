@@ -29,10 +29,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if os.environ.get("DJANGO_SECURITY_KEY"):
     SECRET_KEY = os.environ.get("DJANGO_SECURITY_KEY")
 else:
-    SECRET_KEY = os.getenv("DJANGO_SECURITY_KEY")
+    SECRET_KEY = os.getenv("DJANGO_SECURITY_KEY_local")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -106,13 +106,7 @@ if os.environ.get('pg_endpoint'):    # Postgres
         },
     }
 else:                   # Sqlite3
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': BASE_DIR / 'db.sqlite3',
-    #     }
-    # }
-    pg_config = dj_database_url.parse(os.getenv('pg_endpoint'))     # Parse params for neondb
+    pg_config = dj_database_url.parse(os.getenv('pg_endpoint_local'))     # Parse params for neondb
 
     DATABASES = {
         'default': {
@@ -136,9 +130,9 @@ if os.environ.get("cloudinary_cloud_name"):
     }
 else:
     CLOUDINARY_STORAGE = {
-        'CLOUD_NAME': os.getenv("cloudinary_cloud_name"),
-        'API_KEY': os.getenv("cloudinary_key"),
-        'API_SECRET': os.getenv("cloudinary_secret"),
+        'CLOUD_NAME': os.getenv("cloudinary_cloud_name_local"),
+        'API_KEY': os.getenv("cloudinary_key_local"),
+        'API_SECRET': os.getenv("cloudinary_secret_local"),
     }
 
 STORAGES = {
