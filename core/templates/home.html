@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Hero section -->
+    <section class="relative bg-slate-900 overflow-hidden">
+
+        <!-- Hero - Navbar -->
+        <nav class="bg-inherit relative z-10 max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="" class="flex items-center gap-3">
+
+                {% load static %}
+                <img class="w-9 h-9 rounded-full object-cover" alt="AC" src="{% static '/core/files/my-pic-profile.jpg' %}">
+
+                <span class="text-sm text-white font-medium">Avoy Sain</span>
+            </a>
+            <div class="hidden sm:flex items-center gap-8 text-xs uppercase tracking-widest text-white/70">
+                <a href="https://www.upwork.com/freelancers/~013f69d2bba222d2ef?mp_source=share" target="_blank" class="hover:text-white transition-colors">Upwork</a>
+                <a href="https://www.linkedin.com/in/avoy-sain/" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+                <a href="https://github.com/CodingInGene" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+            </div>
+            <a href="mailto:avoysain414@gmail.com" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/30 text-xs uppercase tracking-widest bg-white text-slate-900 transition-colors">
+                Let's talk
+            </a>
+        </nav>
+
+        <!-- Content -->
+        <div id="hero-content" class="relative z-10 max-w-6xl mx-auto px-6 pt-10 pb-16 sm:pt-14 sm:pb-20 flex flex-col items-center text-center">
+            <p class="text-xs uppercase tracking-[0.25em] text-cyan-400 mb-8" style="font-family: Arial, sans-serif">
+                AI automation developer | Backend developer
+            </p>
+
+            <h1 class="font-medium text-3xl sm:text-4xl md:text-5xl leading-[1.15] max-w-4xl text-white">
+                Helping businesses build products worth paying for
+            </h1>
+
+            <p class="mt-4 text-white/70 max-w-lg text-sm sm:text-base">
+                I partner with founders and teams to design, build, and ship products that moves the business forward — not just the backlog.
+            </p>
+
+            <div class="mt-7 flex flex-wrap items-center justify-center gap-4">
+                <a href="#work" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#ff2e57]/95 text-white text-sm font-medium hover:font-semibold">
+                    View My Work
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                    </svg>
+                </a>
+                <a href="https://www.upwork.com/freelancers/~013f69d2bba222d2ef?mp_source=share" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/40 text-white text-sm font-medium hover:bg-white hover:text-slate-900 transition-colors" target="_blank">
+                    Hire on Upwork
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- floating stat badges -->
+        <!-- <div class="hidden lg:flex flex-col gap-3 absolute top-0 right-0 mr-5 translate-y-1/2 z-10">
+            <div class="bg-white text-slate-900 rounded-full px-4 py-2 shadow-lg flex gap-1">
+                <p class="text-[10px] font-display font-semibold">Admin area</p>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-fill-lock w-4 h-4" viewBox="0 0 16 16">
+                    <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5v-1a2 2 0 0 1 .01-.2 4.49 4.49 0 0 1 1.534-3.693Q8.844 9.002 8 9c-5 0-6 3-6 4m7 0a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1"/>
+                </svg>
+            </div>
+        </div> -->
+
+    </section>
+
+    <!-- Portfolios -->
+    <section id="work" class="bg-slate-50">
+        <div class="max-w-5xl mx-auto px-6 py-20">
+            <div class="flex items-end justify-between mb-12 border-b border-slate-200 pb-6">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.2em] text-cyan-500/90 mb-2" style="font-family: Arial, sans-serif;">Selected Work</p>
+                    <h2 class="font-display font-medium text-3xl text-slate-900">A few things I've shipped</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-14">
+
+                {% for pf in portfolios %}
+                
+                    {% include 'components/cards.html' with pf=pf %}
+
+                {% empty %}
+
+                    <div>
+                        <p class="text-xs uppercase tracking-widest text-slate-500 mb-2">No portfolio to show</p>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    {% include 'components/footer.html' %}
+
+{% endblock %}

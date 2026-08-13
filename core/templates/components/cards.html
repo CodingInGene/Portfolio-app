@@ -1,0 +1,45 @@
+<a href="{% url 'core:project_data' pf.id %}" class="projecthover  group block  border border-slate-300 p-4 rounded-sm ">
+
+    <!-- Thumbnail-->
+    <div class="relative aspect-4/3 bg-slate-100 overflow-hidden rounded-sm">
+        {% if pf.thumbnail.url %}
+            <img src="{{ pf.thumbnail.url }}" alt="{{ pf.title }}" class="projectimg  w-full h-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.04]">
+
+            <!-- Demo video-->
+            {% if pf.demo_video.url %}
+
+                <video loading="lazy" src="{{ pf.demo_video.url }}" class="projectvid  hidden  w-full h-full object-cover" autoplay muted preload="metadata"></video>
+
+            {% endif %}
+
+
+            <!-- Progress bar-->
+            <div class="progressbar  hidden relative bottom-1 h-[10px] rounded-md  bg-fuchsia-500" style="width: 0%;"></div>
+
+        {% else %}
+            <div class="w-full h-full flex items-center justify-center text-sm text-slate-500">Preview</div>
+        {% endif %}
+    </div>
+    
+    <!-- Content-->
+    <div class="mt-5 flex items-start justify-between gap-4">
+        <div>
+            <!-- Show Sl no.-->
+            <p class="text-xs uppercase tracking-widest text-slate-500 mb-2">
+                {{ forloop.counter|stringformat:"02d" }} — {{ project.category|default:"Project" }}
+            </p>
+
+            <!-- Title-->
+            <h3 class="font-display text-xl text-slate-900 group-hover:text-emerald-600 transition-colors">
+                {{ pf.title }}
+            </h3>
+
+            <!-- Desc-->
+            <p class="mt-2 text-sm text-slate-500 leading-relaxed max-w-sm">{{ pf.description|truncatechars:100 }}</p>
+        </div>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+        </svg>
+    </div>
+</a>

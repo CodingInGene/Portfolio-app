@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Navbar -->
+    <div class="w-full bg-slate-900">
+        {% include 'components/navbar.html' %}
+    </div>
+
+    <!-- Project desc-->
+    <div class="w-full">
+        <div class="max-w-5xl mx-auto px-6 pt-12 pb-10">
+
+            <p class="text-xs uppercase tracking-[0.2em] text-emerald-600 mb-3">
+                {{ project.category|default:"Project" }}
+            </p>
+
+            <h1 class="font-display font-medium text-3xl sm:text-4xl leading-tight text-slate-900">
+                {{ project.title }}
+            </h1>
+
+            <p class="mt-6 pl-3 text-slate-600 text-base leading-relaxed max-w-3xl whitespace-pre-line">
+                {{ project.description }}
+            </p>
+
+            {% if project.project_link %}
+                <a href="{{ project.project_link }}" target="_blank" rel="noopener noreferrer"
+                    class="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-500 transition-colors">
+                    Visit Live Project <span>↗</span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Project files -->
+    <section class="bg-slate-50 mt-5 flex-1">
+        <div class="max-w-5xl mx-auto px-6 py-16">
+            <div class="flex items-end justify-between mb-10 border-b border-slate-200 pb-6">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.2em] text-emerald-600 mb-2">Gallery</p>
+                    <h2 class="font-display font-medium text-2xl text-slate-900">Files from this project</h2>
+                </div>
+                <p class="hidden sm:block text-sm text-slate-500">
+                    {{ project.portfolio_to_files.count }} file{{ project.portfolio_to_files.count|pluralize }}
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1  md:grid-cols-2 gap-x-6 gap-y-10">
+
+                {% for file in project.portfolio_to_files.all %}
+
+                    <div class="flex flex-col">
+                        {% if file.fileExt == 'jpg' or file.fileExt == 'png' or file.fileExt == 'jpeg' %}
+                            <div class="relative aspect-4/3 bg-slate-100 overflow-hidden rounded-sm">
+                                <img loading="lazy" src="{{ file.main_file.url }}" alt="{{ file.display_name }}"
+                                    class="w-full h-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.04]">
+                            </div>
+
+                        {% elif file.fileExt == 'mp4' or file.fileExt == 'webp' %}
+                            <div class="relative aspect-4/3 bg-slate-100 overflow-hidden rounded-sm">
+                                <video loading="lazy" src="{{ file.main_file.url }}" class="w-full h-full object-cover" controls preload="metadata"></video>
+                            </div>
+
+                        {% else %}
+                            <div class="relative aspect-4/3 bg-slate-100 overflow-hidden rounded-sm flex flex-col items-center justify-center gap-2">
+                                <span class="px-2.5 py-1 rounded bg-slate-900 text-white text-xs uppercase tracking-wider">
+                                    .{{ file.fileExt|default:"file" }}
+                                </span>
+                                <a class="text-xs text-slate-500" download>Click to download</a>
+                            </div>
+                        {% endif %}
+
+                        <div class="mt-3 flex items-center justify-between gap-3">
+                            <p class="text-sm text-slate-700 truncate">{{ file.fileName }}</p>
+                        </div>
+                    </div>
+
+
+                {% empty %}
+                <p class="text-sm text-slate-500 col-span-full">No files have been added to this project yet.</p>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    {% include 'components/footer.html' %}
+
+{% endblock %}
