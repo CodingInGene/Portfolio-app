@@ -26,13 +26,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-ognt+-sxu5^l-4!o2@gh9u6et!yoj*21w1q@gji&ne)_2#6&6o'
-SECRET_KEY = os.getenv("django-security-key")
+if os.environ.get("DJANGO_SECURITY_KEY"):
+    SECRET_KEY = os.environ.get("DJANGO_SECURITY_KEY")
+else:
+    SECRET_KEY = os.getenv("DJANGO_SECURITY_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.environ.get("DJANGO_SECURITY_KEY"):
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -58,6 +63,7 @@ TAILWIND_APP_NAME = 'theme'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,8 +94,8 @@ WSGI_APPLICATION = 'myportfolio.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
-if os.getenv('pg_endpoint'):    # Postgres
-    pg_config = dj_database_url.parse(os.getenv('pg_endpoint'))     # Parse params for neondb
+if os.environ.get('pg_endpoint'):    # Postgres
+    pg_config = dj_database_url.parse(os.environ.get('pg_endpoint'))     # Parse params for neondb
 
     DATABASES = {
         'default': {
@@ -103,33 +109,50 @@ if os.getenv('pg_endpoint'):    # Postgres
         },
     }
 else:                   # Sqlite3
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+    #     }
+    # }
+    pg_config = dj_database_url.parse(os.getenv('pg_endpoint'))     # Parse params for neondb
+
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+            'ENGINE': pg_config['ENGINE'],
+            'NAME': pg_config['NAME'],
+            'USER': pg_config['USER'],
+            'PASSWORD': pg_config['PASSWORD'],
+            'HOST': pg_config['HOST'],
+            'OPTIONS': pg_config['OPTIONS'],
+            'PORT': pg_config['PORT']
+        },
     }
 
 
 # For media storage - Cloudinary
-# CLOUDINARY_CLOUD_NAME = os.getenv("cloudinary_name")
-# CLOUDINARY_API_KEY = os.getenv("cloudinary_key")
-# CLOUDINARY_API_SECRET = os.getenv("cloudinary_secret")
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv("cloudinary_cloud_name"),
-    'API_KEY': os.getenv("cloudinary_key"),
-    'API_SECRET': os.getenv("cloudinary_secret"),
-}
+if os.environ.get("cloudinary_cloud_name"):
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.environ.get("cloudinary_cloud_name"),
+        'API_KEY': os.environ.get("cloudinary_key"),
+        'API_SECRET': os.environ.get("cloudinary_secret"),
+    }
+else:
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': os.getenv("cloudinary_cloud_name"),
+        'API_KEY': os.getenv("cloudinary_key"),
+        'API_SECRET': os.getenv("cloudinary_secret"),
+    }
 
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"     # Compatibility settings, for cloudinary
 
 
 
@@ -169,6 +192,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 MEDIA_URL = '/media/'
 
