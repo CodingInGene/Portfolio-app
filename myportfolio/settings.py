@@ -32,11 +32,11 @@ else:
     SECRET_KEY = os.getenv("DJANGO_SECURITY_KEY_local")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if os.getenv("django_local"):
-#     DEBUG = True
-# else:
-#     DEBUG = False
-DEBUG = False
+if os.getenv("django_local"):
+    DEBUG = True
+else:
+    DEBUG = False
+#DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
