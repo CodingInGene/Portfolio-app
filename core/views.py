@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 def home(request):
     portfolios = Portfolio.objects.all()
 
-    pagination = Paginator(portfolios, per_page=1)
+    pagination = Paginator(portfolios, per_page=4)
     page = pagination.get_page(request.GET.get("page"))
     page_count = pagination.num_pages
 
