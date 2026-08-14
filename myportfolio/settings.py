@@ -36,7 +36,7 @@ else:
 #     DEBUG = True
 # else:
 #     DEBUG = False
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -206,3 +206,9 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+
+# CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    'hireavoy.vercel.app',
+]
