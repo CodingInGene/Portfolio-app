@@ -210,5 +210,5 @@ MAILERS = {
 
 # CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
-    'hireavoy.vercel.app',
+    'https://hireavoy.vercel.app/',
 ]

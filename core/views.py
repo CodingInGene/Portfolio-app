@@ -26,3 +26,6 @@ def project(request, uuid):
     }
 
     return render(request, "project.html", data)
+
+def about(request):
+    return render(request, "about.html")

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Navbar-->
+    <section class="relative bg-slate-900 overflow-hidden">
+        {% include 'components/navbar.html' %}
+    </section>
+
+    <section class="max-w-4xl mx-auto px-6 py-16">
+        <h1 class="text-4xl font-bold mb-6">About Me</h1>
+
+        <div class="flex flex-col gap-10 items-start">
+
+            
+                <p class="text-base  md:text-lg leading-relaxed text-gray-700">
+                    I'm a Software developer and Freelancer focused on
+                    building practical Automations, and
+                    AI-powered workflows.
+                </p>
+
+                <p class="text-base  md:text-lg leading-relaxed text-gray-700">
+                    My work spans Python, Django, React, REST APIs, cloud services,
+                    and automation. I enjoy taking ideas and turning them into
+                    working products — from full-stack web applications and
+                    serverless systems to workflow automation and data-driven
+                    projects.
+                </p>
+
+                <p class="text-base  md:text-lg leading-relaxed text-gray-700">
+                    I've worked with technologies such as
+                    <span class="font-medium text-gray-900">Django, Django REST Framework, React, Tailwind CSS, PostgreSQL, Azure, AWS, Microsoft Graph API, Power Automate, n8n,</span>
+                    and <span class="font-medium text-gray-900">LangGraph</span>.
+                    I particularly enjoy backend development and finding ways to
+                    automate repetitive processes and connect different services
+                    through APIs.
+                </p>
+
+                <p class="text-base  md:text-lg leading-relaxed text-gray-700">
+                    Some of my projects include serverless recruitment automation,
+                    healthcare management systems, business-report automation,
+                    attendance systems, and AI/automation workflows.
+                </p>
+
+                <p class="text-base  md:text-lg leading-relaxed text-gray-700">
+                    I'm currently focused on growing as a software/AI automation
+                    engineer, while continuing to build projects that solve
+                    real-world problems and strengthen my skills across backend
+                    development, cloud, and intelligent automation.
+                </p>
+
+                <p class="text-base  md:text-lg font-medium leading-relaxed text-gray-700 italic border-l-4 border-blue-500 pl-4 mt-4">
+                    I like building things that are not just technically
+                    interesting, but actually useful.
+                </p>
+            
+
+        </div>
+
+        <div class="mt-12">
+            <h2 class="text-xl md:text-2xl font-semibold mb-4">Expertise</h2>
+            <div class="flex flex-wrap gap-3  text-sm">
+                <span class="px-4 py-2 bg-gray-100 rounded-full font-medium">Python</span>
+                <span class="px-4 py-2 bg-gray-100 rounded-full  font-medium">Django</span>
+                <span class="px-4 py-2 bg-gray-100 rounded-full  font-medium">Power Automate</span>
+                <span class="px-4 py-2 bg-gray-100 rounded-full  font-medium">AWS Lambda</span>
+                <span class="px-4 py-2 bg-gray-100 rounded-full  font-medium">n8n</span>
+                <span class="px-4 py-2 bg-gray-100 rounded-full  font-medium">Git</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    {% include 'components/footer.html' %}
+
+{% endblock %}

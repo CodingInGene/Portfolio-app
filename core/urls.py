@@ -6,4 +6,5 @@ app_name = 'core'
 urlpatterns = [
     path('', views.home, name="homepage"),
     path('project/<slug:uuid>/', views.project, name="project_data"),
+    path('about/', views.about, name="aboutpage"),
 ]

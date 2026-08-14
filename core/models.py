@@ -26,7 +26,7 @@ class Portfolio(BaseModel):
         return self.title
 
     class Meta:
-        ordering = ['priority']
+        ordering = ['-priority']    # High priority num first
 
 class PortfolioFile(BaseModel):
     portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name="portfolio_to_files")
