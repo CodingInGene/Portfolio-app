@@ -56,17 +56,6 @@
             </div>
         </div>
 
-        <!-- floating stat badges -->
-        <!-- <div class="hidden lg:flex flex-col gap-3 absolute top-0 right-0 mr-5 translate-y-1/2 z-10">
-            <div class="bg-white text-slate-900 rounded-full px-4 py-2 shadow-lg flex gap-1">
-                <p class="text-[10px] font-display font-semibold">Admin area</p>
-                
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-fill-lock w-4 h-4" viewBox="0 0 16 16">
-                    <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5v-1a2 2 0 0 1 .01-.2 4.49 4.49 0 0 1 1.534-3.693Q8.844 9.002 8 9c-5 0-6 3-6 4m7 0a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1"/>
-                </svg>
-            </div>
-        </div> -->
-
     </section>
 
     <!-- Portfolios -->
@@ -81,7 +70,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-14">
 
-                {% for pf in portfolios %}
+                {% for pf in portfolio_page %}
                 
                     {% include 'components/cards.html' with pf=pf %}
 
@@ -94,6 +83,12 @@
                 {% endfor %}
             </div>
         </div>
+    </section>
+
+
+    <!-- Pagination -->
+    <section id="pagination" class="bg-slate-50 w-full">
+        {% include 'components/paginator.html' with page=portfolio_page pages_iterator=page_count_iterator %}
     </section>
 
     <!-- Footer -->
