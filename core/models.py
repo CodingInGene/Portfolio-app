@@ -34,7 +34,7 @@ class PortfolioFile(BaseModel):
     main_file = models.FileField(upload_to='portfolioapp/project_file/', storage=RawMediaCloudinaryStorage())
 
     def __str__(self):
-        return self.main_file.name
+        return self.portfolio.title[:10] + self.main_file.name
 
     
     def fileName(self):
