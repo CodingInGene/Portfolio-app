@@ -6,7 +6,7 @@
             <img src="{{ pf.thumbnail.url }}" alt="{{ pf.title }}" class="projectimg  backdrop-brightness-125 w-full h-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.04]">
 
             <!-- Demo video-->
-            {% if pf.demo_video.url %}
+            {% if pf.demo_video %}
 
                 <video loading="lazy" src="{{ pf.demo_video.url }}" class="projectvid  hidden  w-full h-full object-cover" autoplay muted loop preload="metadata"></video>
 
@@ -31,7 +31,7 @@
 
             <!-- Title-->
             <h3 class="font-medium text-xl text-slate-900 ">   <!-- group-hover:text-emerald-600 transition-colors -->
-                {{ pf.title|truncatechars:52 }}
+                {{ pf.title|truncatechars:60 }}
             </h3>
 
             <!-- Desc-->
