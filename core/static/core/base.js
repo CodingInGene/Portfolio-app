@@ -34,74 +34,77 @@ document.addEventListener('DOMContentLoaded', function () {
             let timer;      // For preview
             let interval;   // For progress bar
 
-            // Start timer when focused
-            ele.addEventListener("mouseenter", function(e){
-                // Load progress bar
-                if (pbar && video){
-                    pbar.style.width = "0%";
-                    pbar.classList.remove("hidden");
+            if (video){
+                // Start timer when focused
+                ele.addEventListener("mouseenter", function(e){
+                    // Load progress bar
+                    if (pbar){
+                        pbar.style.width = "0%";
+                        pbar.classList.remove("hidden");
 
-                    const steps = 2;        // Step count
-                    const iteration = (timeoutIn / (100/steps));    // each step in ms
+                        const steps = 2;        // Step count
+                        const iteration = (timeoutIn / (100/steps));    // each step in ms
 
-                    let stopwatch = 0;
+                        let stopwatch = 0;
 
-                    interval = setInterval(() => {      // Progress - 100%/2(each step) -> 50iteration -> 2000ms/50 = 40ms(each step)
-                        if (stopwatch <= 100){
-                            stopwatch += steps;
-                            pbar.style.width = String(stopwatch) + "%";
-                        }
-                    }, iteration);
-                }
-
-
-                // Timer for preview
-                timer = setTimeout(() => {
-                    startPreview();
-                }, timeoutIn);
-
-                // Demo video preview
-                function startPreview(){
-                    if (img){
-                        img.classList.add("hidden");
+                        interval = setInterval(() => {      // Progress - 100%/2(each step) -> 50iteration -> 2000ms/50 = 40ms(each step)
+                            if (stopwatch <= 100){
+                                stopwatch += steps;
+                                pbar.style.width = String(stopwatch) + "%";
+                            }
+                        }, iteration);
                     }
-                    if (video){
-                        video.classList.remove("hidden");
-                        // console.log(i.readyState);
 
-                        // Hide progress bar when video starts playing
-                        if (pbar && video){
-                            pbar.classList.add("hidden");
-                            clearInterval(interval);
-                        }
-                    }
-                }
-            });
 
-            // End timer
-            ele.addEventListener("mouseleave", function(e){     // Stop demo preview if left before 2s
-                if (timer){
-                    clearTimeout(timer);
-                    clearInterval(interval);
-                    stopPreview();
+                    // Timer for preview
+                    timer = setTimeout(() => {
+                        startPreview();
+                    }, timeoutIn);
 
-                    // Stop preview
-                    function stopPreview(){
+                    // Demo video preview
+                    function startPreview(){
                         if (img){
-                            img.classList.remove("hidden");
+                            img.classList.add("hidden");
                         }
                         if (video){
-                            video.classList.add("hidden");
+                            video.classList.remove("hidden");
+                            // console.log(i.readyState);
+
+                            // Hide progress bar when video starts playing
+                            if (pbar){
+                                pbar.classList.add("hidden");
+                                clearInterval(interval);
+                            }
                         }
                     }
+                });
 
-                    // Hide progress bar
-                    if (pbar && video){
-                        pbar.classList.add("hidden");
 
+                // End timer
+                ele.addEventListener("mouseleave", function(e){     // Stop demo preview if left before 2s
+                    if (timer){
+                        clearTimeout(timer);
+                        clearInterval(interval);
+                        stopPreview();
+
+                        // Stop preview
+                        function stopPreview(){
+                            if (img){
+                                img.classList.remove("hidden");
+                            }
+                            if (video){
+                                video.classList.add("hidden");
+                            }
+                        }
+
+                        // Hide progress bar
+                        if (pbar){
+                            pbar.classList.add("hidden");
+
+                        }
                     }
-                }
-            });
+                });
+            }   // If video ends
         })
     }
 });
