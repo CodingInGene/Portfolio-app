@@ -282,6 +282,9 @@
   .my-5 {
     margin-block: calc(var(--spacing) * 5);
   }
+  .mt-1 {
+    margin-top: var(--spacing);
+  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -672,6 +675,9 @@
   .text-center {
     text-align: center;
   }
+  .text-justify {
+    text-align: justify;
+  }
   .font-serif {
     font-family: var(--font-serif);
   }
@@ -710,6 +716,9 @@
   .text-xs {
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .text-\[14px\] {
+    font-size: 14px;
   }
   .leading-\[1\.15\] {
     --tw-leading: 1.15;
@@ -761,6 +770,9 @@
   }
   .whitespace-pre-line {
     white-space: pre-line;
+  }
+  .text-blue-500 {
+    color: var(--color-blue-500);
   }
   .text-blue-600 {
     color: var(--color-blue-600);

@@ -19,9 +19,13 @@
                 {{ project.title }}
             </h1>
 
-            <p class="mt-6 pl-3 text-slate-600 text-base leading-relaxed max-w-4xl whitespace-pre-line">
-                {{ project.description }}
-            </p>
+            <div>
+                <p id="project_desc" class="mt-6 pl-3 text-slate-600 text-base leading-relaxed max-w-4xl whitespace-pre-line">
+                    {{ project.description }} 
+                </p>
+
+                <a id="desc_readmore" class="hidden  mt-1 pl-3 text-base text-blue-600 cursor-pointer">Read more..</a>
+            </div>
 
             {% if project.project_link %}
                 <a href="{{ project.project_link }}" target="_blank" rel="noopener noreferrer"

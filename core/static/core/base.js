@@ -107,4 +107,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }   // If video ends
         })
     }
+
+
+
+    // Read more button for desc
+    const desc = document.getElementById("project_desc");
+    const readmore = document.getElementById("desc_readmore");
+
+    if (desc && readmore){
+        const original_desc = desc.textContent
+        if (desc.textContent.length > 350){
+            // Slice string
+            desc.textContent = original_desc.substring(0, 350);
+            readmore.classList.remove("hidden");
+        }
+
+        // Show full content if read more is pressed
+        readmore.addEventListener("click", function(){
+            desc.textContent = original_desc;
+            readmore.classList.add("hidden");
+        })
+    }
 });
