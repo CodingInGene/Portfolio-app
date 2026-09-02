@@ -26,7 +26,7 @@ def project(request, uuid):
     portfolio = Portfolio.objects.get(id=uuid)
 
     project_visits(request, portfolio)     # Project visit track
-    visit_count = ProjectVisitInfo.objects.all().count()     # Project visits
+    visit_count = ProjectVisitInfo.objects.filter(project=portfolio).count()     # Project visits
 
     data = {
         "project":portfolio,
