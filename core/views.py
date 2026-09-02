@@ -1,9 +1,13 @@
 from django.shortcuts import render
-from core.models import Portfolio, PortfolioFile
+from core.models import Portfolio, PortfolioFile, VisitorInfo, ProjectVisitInfo
 from django.core.paginator import Paginator
+from core.visitor_tracking import site_visits, project_visits
 
 # Create your views here.
 def home(request):
+    # Track and Store visitors
+    site_visits(request)
+
     portfolios = Portfolio.objects.all()
 
     pagination = Paginator(portfolios, per_page=4)
@@ -21,11 +25,21 @@ def home(request):
 def project(request, uuid):
     portfolio = Portfolio.objects.get(id=uuid)
 
+    project_visits(request, portfolio)     # Project visit track
+    visit_count = ProjectVisitInfo.objects.all().count()     # Project visits
+
     data = {
         "project":portfolio,
+        "visits":visit_count,
+        "percent_of_total_visit":(visit_count // VisitorInfo.objects.all().count())*100
     }
 
     return render(request, "project.html", data)
 
 def about(request):
-    return render(request, "about.html")
+    visit_count = VisitorInfo.objects.all().count()
+    data = {
+        "visitor_count":visit_count
+    }
+
+    return render(request, "about.html", data)

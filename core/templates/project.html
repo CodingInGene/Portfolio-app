@@ -7,9 +7,22 @@
         {% include 'components/navbar.html' %}
     </div>
 
-    <!-- Project desc-->
-    <div class="w-full">
-        <div class="max-w-5xl mx-auto px-6 pt-12 pb-10">
+    <!-- Grid-->
+    <div class="w-full mx-auto  lg:grid grid-rows-1 grid-cols-[minmax(0,1fr)_max-content] gap-4  px-6">
+
+        <!-- Visitor count -->
+        <div class="row-start-1 col-start-2   max-w-100  mx-auto pt-14 pb-10">
+            <div class="bg-slate-50/60 px-5 py-2  rounded-md shadow-sm">
+                <p class="text-sm">
+                    <i class="bi bi-speedometer2  mr-2"></i>
+                    <span class="font-semibold text-orange-500">{{ visits }}</span>
+                    <span class="font-semibold text-orange-500"> people</span> opened this project. Which is <strong>{{ percent_of_total_visit }}%</strong> of total viewers.
+                </p>
+            </div>
+        </div>
+
+        <!-- Project desc-->
+        <div class="row-start-1 col-start-1  w-full max-w-5xl ml-auto  pt-14 pb-10  md:px-6">
 
             <p class="text-sm font-medium uppercase tracking-[0.2em] text-emerald-600 mb-3">
                 {{ project.category|default:"Project" }}
@@ -34,6 +47,7 @@
                 </a>
             {% endif %}
         </div>
+
     </div>
 
     <!-- Project files -->

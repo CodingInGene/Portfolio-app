@@ -12,7 +12,7 @@ class BaseModel(models.Model):
 
 
 # Create your models here.
-class Portfolio(BaseModel):
+class Portfolio(BaseModel):        # Adds visit_count field for this table
     title = models.CharField(max_length=200)
     category = models.CharField(max_length=100)
     description = models.TextField()
@@ -44,3 +44,14 @@ class PortfolioFile(BaseModel):
     def fileExt(self):
         ext = self.main_file.name.split(".")
         return ext[1]
+
+
+# Vistor count
+class VisitorInfo(BaseModel):
+    ip_address = models.CharField(max_length=42)    # ipv6 can be 39 chars long
+    user_agent = models.CharField(max_length=100, null=True, blank=True)
+
+class ProjectVisitInfo(BaseModel):
+    project = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name="portfolio_visits")
+    ip_address = models.CharField(max_length=42)    # ipv6 can be 39 chars long
+    user_agent = models.CharField(max_length=100, null=True, blank=True)
