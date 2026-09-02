@@ -28,7 +28,7 @@ def project_visits(req, project_obj):
 
     if ip_addr:
         # Check user
-        existing = ProjectVisitInfo.objects.filter(ip_address=ip_addr).exists()
+        existing = ProjectVisitInfo.objects.filter(project=project_obj, ip_address=ip_addr).exists()
 
         if not existing:
             # Store
