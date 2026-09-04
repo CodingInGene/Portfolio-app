@@ -31,7 +31,7 @@ def project(request, uuid):
     data = {
         "project":portfolio,
         "visits":visit_count,
-        "percent_of_total_visit":(visit_count // VisitorInfo.objects.all().count())*100
+        "percent_of_total_visit":round(visit_count / VisitorInfo.objects.all().count(), 2)*100
     }
 
     return render(request, "project.html", data)
