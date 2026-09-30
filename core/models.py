@@ -48,10 +48,10 @@ class PortfolioFile(BaseModel):
 
 # Vistor count
 class VisitorInfo(BaseModel):
-    ip_address = models.CharField(max_length=42)    # ipv6 can be 39 chars long
+    ip_address = models.GenericIPAddressField()         # Storing as a ip addr field
     user_agent = models.CharField(max_length=100, null=True, blank=True)
 
 class ProjectVisitInfo(BaseModel):
     project = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name="portfolio_visits")
-    ip_address = models.CharField(max_length=42)    # ipv6 can be 39 chars long
+    ip_address = models.GenericIPAddressField()
     user_agent = models.CharField(max_length=100, null=True, blank=True)
