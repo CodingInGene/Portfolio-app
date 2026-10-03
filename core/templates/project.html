@@ -33,9 +33,11 @@
             </h1>
 
             <div>
-                <p id="project_desc" class="mt-6 pl-3 text-slate-600 text-base text-justify leading-relaxed max-w-4xl whitespace-pre-line">
+                <div id="project_desc" class="mt-6 pl-3 text-slate-600 text-base text-justify leading-relaxed max-w-4xl whitespace-pre-line">
                     {{ project.description }} 
-                </p>
+
+                    <span class="text-slate-800 font-semibold">Technologies used </span>- {{ project.technologies }}
+                </div>
 
                 <a id="desc_readmore" class="hidden  mt-1 pl-3 text-base text-blue-600 cursor-pointer">Read more..</a>
             </div>

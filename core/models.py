@@ -16,6 +16,7 @@ class Portfolio(BaseModel):        # Adds visit_count field for this table
     title = models.CharField(max_length=200)
     category = models.CharField(max_length=100)
     description = models.TextField()
+    technologies = models.TextField(blank=True, null=True)       # Technologies used
 
     thumbnail = models.ImageField(upload_to='portfolioapp/thumbnails/', null=True, blank=True)
     demo_video = models.FileField(upload_to='portfolioapp/demo/', storage=RawMediaCloudinaryStorage(), null=True, blank=True)

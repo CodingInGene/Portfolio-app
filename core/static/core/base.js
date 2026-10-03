@@ -115,16 +115,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const readmore = document.getElementById("desc_readmore");
 
     if (desc && readmore){
-        const original_desc = desc.textContent
+        const original_desc = desc.innerHTML;
         if (desc.textContent.length > 350){
             // Slice string
-            desc.textContent = original_desc.substring(0, 350);
+            desc.innerHTML = original_desc.substring(0, 350);
             readmore.classList.remove("hidden");
         }
 
         // Show full content if read more is pressed
         readmore.addEventListener("click", function(){
-            desc.textContent = original_desc;
+            desc.innerHTML = original_desc;
             readmore.classList.add("hidden");
         })
     }
