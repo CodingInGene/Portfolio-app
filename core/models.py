@@ -18,9 +18,9 @@ class Portfolio(BaseModel):        # Adds visit_count field for this table
     description = models.TextField()
     technologies = models.TextField(blank=True, null=True)       # Technologies used
 
-    thumbnail = models.ImageField(upload_to='portfolioapp/thumbnails/', null=True, blank=True)
-    demo_video = models.FileField(upload_to='portfolioapp/demo/', storage=RawMediaCloudinaryStorage(), null=True, blank=True)
-    project_link = models.URLField(null=True, blank=True)
+    thumbnail = models.ImageField(upload_to='portfolioapp/thumbnails/', null=True, blank=True, max_length=400)
+    demo_video = models.FileField(upload_to='portfolioapp/demo/', storage=RawMediaCloudinaryStorage(), null=True, blank=True, max_lenght=400)
+    project_link = models.URLField(null=True, blank=True, max_length=400)
     priority = models.IntegerField(null=True, blank=True)    # Priority based display
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Portfolio(BaseModel):        # Adds visit_count field for this table
 class PortfolioFile(BaseModel):
     portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name="portfolio_to_files")
 
-    main_file = models.FileField(upload_to='portfolioapp/project_file/', storage=RawMediaCloudinaryStorage())
+    main_file = models.FileField(upload_to='portfolioapp/project_file/', storage=RawMediaCloudinaryStorage(), max_length=400)
 
     def __str__(self):
         return self.portfolio.title[:10] + self.main_file.name
@@ -50,9 +50,9 @@ class PortfolioFile(BaseModel):
 # Vistor count
 class VisitorInfo(BaseModel):
     ip_address = models.GenericIPAddressField()         # Storing as a ip addr field
-    user_agent = models.CharField(max_length=100, null=True, blank=True)
+    user_agent = models.CharField(max_length=400, null=True, blank=True)
 
 class ProjectVisitInfo(BaseModel):
     project = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name="portfolio_visits")
     ip_address = models.GenericIPAddressField()
-    user_agent = models.CharField(max_length=100, null=True, blank=True)
+    user_agent = models.CharField(max_length=400, null=True, blank=True)
