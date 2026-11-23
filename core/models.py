@@ -19,7 +19,7 @@ class Portfolio(BaseModel):        # Adds visit_count field for this table
     technologies = models.TextField(blank=True, null=True)       # Technologies used
 
     thumbnail = models.ImageField(upload_to='portfolioapp/thumbnails/', null=True, blank=True, max_length=400)
-    demo_video = models.FileField(upload_to='portfolioapp/demo/', storage=RawMediaCloudinaryStorage(), null=True, blank=True, max_lenght=400)
+    demo_video = models.FileField(upload_to='portfolioapp/demo/', storage=RawMediaCloudinaryStorage(), null=True, blank=True, max_length=400)
     project_link = models.URLField(null=True, blank=True, max_length=400)
     priority = models.IntegerField(null=True, blank=True)    # Priority based display
 
